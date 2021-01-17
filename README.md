@@ -1,13 +1,15 @@
-# Project Name
+# More Places To Stay
 
-> Project description
+> This repo is a clone of the More Places To Stay service from an AirBnb room listing page.
 
 ## Related Projects
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  - https://github.com/Mauve-Mishka/title-service
+  - https://github.com/Mauve-Mishka/photos-service
+  - https://github.com/Mauve-Mishka/summary-service
+  - https://github.com/Mauve-Mishka/amenities-service
+  - https://github.com/Mauve-Mishka/availability-service
+  - https://github.com/Mauve-Mishka/user-service
 
 ## Table of Contents
 
