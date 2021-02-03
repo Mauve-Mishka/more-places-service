@@ -18,9 +18,26 @@ const createPlaces = async (ids) => {
   }
 };
 
+const getPlaces = async () => {
+  try {
+    const { ids } = await Places.findOne({});
+    const twelveRandomPlaces = [];
+    for (let i = 0; i < 12; i++) {
+      const randomIndex = Math.floor(Math.random() * ids.length);
+      twelveRandomPlaces.push(ids[randomIndex]);
+    }
+    return twelveRandomPlaces;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+getPlaces();
+
 module.exports = {
   connect: () => db,
   disconnect: () => mongoose.disconnect(),
   createPlaces,
+  getPlaces
 };
 
