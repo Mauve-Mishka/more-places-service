@@ -32,8 +32,6 @@ const getPlaces = async () => {
   }
 };
 
-getPlaces();
-
 module.exports = {
   connect: () => db,
   disconnect: () => mongoose.disconnect(),
