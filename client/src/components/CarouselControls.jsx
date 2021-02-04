@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { query } from '../utils';
+import PropTypes from 'prop-types';
 
 const CarouselControlsContainer = styled.div`
   align-items: center;
@@ -50,6 +51,12 @@ const CarouselControls = ({ page, pages, updatePage }) => {
       </ArrowContainer>
     </CarouselControlsContainer>
   );
+};
+
+CarouselControls.propTypes = {
+  page: PropTypes.number.isRequired,
+  pages: PropTypes.number.isRequired,
+  updatePage: PropTypes.function
 };
 
 export default CarouselControls;

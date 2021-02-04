@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import CarouselControls from './CarouselControls';
 import { colors, query } from '../utils';
+import PropTypes from 'prop-types';
 
 const StyledHeaderContainer = styled.div`
   display: flex;
@@ -27,6 +28,12 @@ const SectionHeader = ({ page, pages, updatePage }) => {
       <CarouselControls page={page} pages={pages} updatePage={updatePage} />
     </StyledHeaderContainer>
   );
+};
+
+SectionHeader.propTypes = {
+  page: PropTypes.number.isRequired,
+  pages: PropTypes.number.isRequired,
+  updatePage: PropTypes.function
 };
 
 export default SectionHeader;
