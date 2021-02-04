@@ -1,4 +1,5 @@
 const db = require('./db.js');
+const { createPlaces } = require('./helpers.js');
 db.connect();
 
 const seedPlaces = async(start, end) => {
