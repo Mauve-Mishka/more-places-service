@@ -1,19 +1,23 @@
+/**
+ * @jest-environment node
+ */
+
 const app = require('./app.js');
 const supertest = require('supertest');
 const request = supertest(app);
 
-describe('Root route', () => {
+jest.mock('./database/helpers.js');
+const { getPlaces } = require('./database/helpers.js');
+getPlaces.mockImplementation(() => [1, 2, 3, 4, 5, 6, 7, 8, 9]);
 
-  it('should return 200 status code', async (done) => {
-    const res = await request.get('/');
-    expect(res.status).toBe(200);
-    done();
-  });
 
-  it('should send HTML in response', async (done) => {
-    const res = await request.get('/');
-    expect(res.type).toBe('text/html')
-    done();
+describe('/places/:id', () => {
+
+  test('should return an array of numbers', async () => {
+
+    const response = await request.get('/places/101');
+    expect(response.body).toStrictEqual([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+
   });
 
 });

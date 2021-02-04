@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const { getPlaces } = require('./database/db.js');
+const { getPlaces } = require('./database/helpers.js');
 const data = require('../testdata.js');
 
 app.use(express.static('public'));
