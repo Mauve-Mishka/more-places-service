@@ -56,7 +56,7 @@ const CarouselControls = ({ page, pages, updatePage }) => {
 CarouselControls.propTypes = {
   page: PropTypes.number.isRequired,
   pages: PropTypes.number.isRequired,
-  updatePage: PropTypes.function
+  updatePage: PropTypes.func
 };
 
 export default CarouselControls;

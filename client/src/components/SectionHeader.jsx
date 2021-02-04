@@ -33,7 +33,7 @@ const SectionHeader = ({ page, pages, updatePage }) => {
 SectionHeader.propTypes = {
   page: PropTypes.number.isRequired,
   pages: PropTypes.number.isRequired,
-  updatePage: PropTypes.function
+  updatePage: PropTypes.func
 };
 
 export default SectionHeader;
