@@ -6,7 +6,7 @@ const data = require('../testdata.js');
 app.use(express.static('public'));
 app.use('/rooms/:id', express.static('public'));
 
-app.get('/places', async (req, res) => {
+app.get('/places/test', async (req, res) => {
   try {
     res.status(200).send(data);
   } catch (err) {
