@@ -1,15 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import SectionHeader from './SectionHeader';
+import ItemPhoto from './ItemPhoto';
 import axios from 'axios';
 import { colors, query } from '../utils';
 
 const MorePlacesSectionContainer = styled.section`
   background-color: ${colors.culturedgray};
-  padding: 32px 0;
+  font-family: "Roboto";
+  margin: 0;
+  padding: 32px 24px;
+  width: auto;
   @media (min-width: ${query.medium}) {
-    padding: 48px 0;
+    padding: 48px 40px;
   }
+  @media (min-width: ${query.large}) {
+    padding: 48px 80px;
+  }
+`;
+
+const InnerSectionContainer = styled.div`
+  margin: 0 auto;
+  max-width: 1128px;
+  width: 100%;
 `;
 
 const MorePlacesSection = () => {
@@ -32,7 +45,7 @@ const MorePlacesSection = () => {
 
   useEffect(() => {
     const fetchInitialState = async () => {
-      const { data } = await axios.get('/places');
+      const { data } = await axios.get('/places/test');
       setPlaces(data);
     };
     fetchInitialState();
@@ -48,7 +61,10 @@ const MorePlacesSection = () => {
 
   return (
     <MorePlacesSectionContainer>
-      <SectionHeader page={page} pages={places.length / perPage} updatePage={updatePage} />
+      <InnerSectionContainer>
+        <SectionHeader page={page} pages={places.length / perPage} updatePage={updatePage} />
+        <ItemPhoto isSaved={places[0].isSaved} isSuperhost={places[0].isSuperhost} thumbnailUrl={places[0].thumbnailUrl} />
+      </InnerSectionContainer>
     </MorePlacesSectionContainer>
   );
 };
