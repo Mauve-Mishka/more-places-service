@@ -2,17 +2,29 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import CarouselItem from './CarouselItem';
+import { query } from '../utils';
 
 const CarouselSectionContainer = styled.div`
-  overflow-x: hidden;
+  margin: 0 -24px;
+  overflow-x: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  @media (min-width: ${query.medium}) {
+    overflow-x: hidden;
+    margin: 0;
+  }
 `;
 
 const CarouselContainer = styled.div`
   display: flex;
   flex-wrap: nowrap;
-  margin: 0 -10px;
+  margin: 0 0 0 14px;
   transition: transform 0.75s;
-  transform: translateX(calc((${props => props.page} - 1) * -100%))
+  transform: translateX(calc((${props => props.page} - 1) * -100%));
+  @media (min-width: ${query.medium}) {
+    margin: 0 -10px;
+  }
 `;
 
 const CarouselSection = ({ page, perPage, places }) => {
