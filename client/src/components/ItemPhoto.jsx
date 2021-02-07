@@ -11,8 +11,9 @@ const ItemPhotoContainer = styled.div`
 `;
 
 const StyledItemPhoto = styled.img`
-  width: 100%;
+  border-radius: 8px;
   height: auto;
+  width: 100%;
 `;
 
 const ItemPhoto = ({ isSaved, isSuperhost, thumbnailUrl }) => {

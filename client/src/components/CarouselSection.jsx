@@ -4,10 +4,15 @@ import PropTypes from 'prop-types';
 import CarouselItem from './CarouselItem';
 
 const CarouselSectionContainer = styled.div`
+  overflow-x: hidden;
+`;
+
+const CarouselContainer = styled.div`
   display: flex;
   flex-wrap: nowrap;
   margin: 0 -10px;
-  overflow-x: hidden;
+  transition: transform 0.75s;
+  transform: translateX(calc((${props => props.page} - 1) * -100%))
 `;
 
 const CarouselSection = ({ page, perPage, places }) => {
@@ -20,7 +25,9 @@ const CarouselSection = ({ page, perPage, places }) => {
 
   return (
     <CarouselSectionContainer>
-      { items }
+      <CarouselContainer page={page}>
+        { items }
+      </CarouselContainer>
     </CarouselSectionContainer>
   );
 };
