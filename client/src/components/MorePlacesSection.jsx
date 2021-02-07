@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import SectionHeader from './SectionHeader';
-import ItemPhoto from './ItemPhoto';
+import CarouselSection from './CarouselSection';
 import axios from 'axios';
 import { colors, query } from '../utils';
 
@@ -62,8 +62,16 @@ const MorePlacesSection = () => {
   return (
     <MorePlacesSectionContainer>
       <InnerSectionContainer>
-        <SectionHeader page={page} pages={places.length / perPage} updatePage={updatePage} />
-        <ItemPhoto isSaved={places[0].isSaved} isSuperhost={places[0].isSuperhost} thumbnailUrl={places[0].thumbnailUrl} />
+        <SectionHeader
+          page={page}
+          pages={places.length / perPage}
+          updatePage={updatePage}
+        />
+        <CarouselSection
+          page={page}
+          perPage={perPage}
+          places={places}
+        />
       </InnerSectionContainer>
     </MorePlacesSectionContainer>
   );
