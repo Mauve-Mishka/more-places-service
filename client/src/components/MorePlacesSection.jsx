@@ -19,7 +19,7 @@ const MorePlacesSectionContainer = styled.section`
   }
 `;
 
-const InnerSectionContainer = styled.div`
+const SectionInnerContainer = styled.div`
   margin: 0 auto;
   max-width: 1128px;
   width: 100%;
@@ -41,7 +41,7 @@ const MorePlacesSection = () => {
 
   const [ places, setPlaces ] = useState(defaultState);
   const [ page, setPage ] = useState(1);
-  const [ perPage, setPerPage ] = useState(4); // needs to update based on page width
+  const [ perPage, setPerPage ] = useState(window.innerWidth >= 1128 ? 4 : 3);
 
   useEffect(() => {
     const fetchInitialState = async () => {
@@ -50,6 +50,18 @@ const MorePlacesSection = () => {
     };
     fetchInitialState();
   }, []);
+
+  useEffect(() => {
+    const updatePagination = () => {
+      if (window.innerWidth >= 1128 && perPage !== 4) {
+        setPerPage(4);
+      } else if (window.innerWidth < 1128 && perPage !== 3) {
+        setPerPage(3);
+      }
+    };
+    window.addEventListener('resize', updatePagination);
+    return () => window.removeEventListener('resize', updatePagination);
+  }, [perPage]);
 
   const updatePage = (direction) => {
     if (direction > 0) {
@@ -61,7 +73,7 @@ const MorePlacesSection = () => {
 
   return (
     <MorePlacesSectionContainer>
-      <InnerSectionContainer>
+      <SectionInnerContainer>
         <SectionHeader
           page={page}
           pages={places.length / perPage}
@@ -72,7 +84,7 @@ const MorePlacesSection = () => {
           perPage={perPage}
           places={places}
         />
-      </InnerSectionContainer>
+      </SectionInnerContainer>
     </MorePlacesSectionContainer>
   );
 };
