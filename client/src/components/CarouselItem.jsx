@@ -13,10 +13,10 @@ const CarouselItemContainer = styled.div`
   flex-shrink: 0;
   width: 66%;
   @media (min-width: ${query.medium}) {
-    width: calc(33.333% - 20px);
+    width: calc(33.333%);
   }
   @media (min-width: ${query.large}) {
-    width: calc(25% - 20px);
+    width: calc(25%);
   }
 `;
 
