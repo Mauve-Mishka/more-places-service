@@ -5,24 +5,22 @@ import SuperhostBadge from './SuperhostBadge';
 import SavedBadge from './SavedBadge';
 
 const ItemPhotoContainer = styled.div`
-  width: 300px;
-  height: 250px;
+  position: relative;
+  width: 100%;
+  height: auto;
 `;
 
-const StyledItemPhoto = styled.div`
-  background-image: url(${props => props.thumbnailUrl});
-  position: relative;
-  width: 300px;
-  height: 250px;
+const StyledItemPhoto = styled.img`
+  width: 100%;
+  height: auto;
 `;
 
 const ItemPhoto = ({ isSaved, isSuperhost, thumbnailUrl }) => {
   return (
     <ItemPhotoContainer>
-      <StyledItemPhoto thumbnailUrl={thumbnailUrl}>
-        {isSuperhost && <SuperhostBadge isSuperhost={isSuperhost} />}
-        <SavedBadge isSaved={isSaved} />
-      </StyledItemPhoto>
+      <StyledItemPhoto src={thumbnailUrl} />
+      {isSuperhost && <SuperhostBadge isSuperhost={isSuperhost} />}
+      <SavedBadge isSaved={isSaved} />
     </ItemPhotoContainer>
   );
 };
