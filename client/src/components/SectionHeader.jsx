@@ -5,12 +5,15 @@ import { colors, query } from '../utils';
 import PropTypes from 'prop-types';
 
 const StyledHeaderContainer = styled.div`
+  align-items: center;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin: 0 0 24px 0;
   h2 {
     font-size: 22px;
     font-weight: 500;
+    margin: 0;
   }
 `;
 
