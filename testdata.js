@@ -1,33 +1,35 @@
 module.exports = [
   {
-    thumbnailUrl: 'https://placekitten.com/336/324',
+    thumbnailUrl: 'https://placekitten.com/330/220',
     isSuperhost: true,
     isSaved: true,
     houseType: 'Entire house',
-    beds: 2,
-    stayName: 'Placeholder name',
-    price: 100
+    beds: 4,
+    stayName: 'PLACEHOLDER NAME',
+    price: 115,
+    reviews: 12,
+    reviewsAvg: 4.78
   },
   {
-    thumbnailUrl: 'https://placekitten.com/336/324',
+    thumbnailUrl: 'https://placekitten.com/330/220',
     isSuperhost: false,
     isSaved: true,
-    houseType: 'Entire house',
+    houseType: 'Hotel room',
     beds: 2,
     stayName: 'Placeholder name with really long text',
-    price: 100
+    price: 203
   },
   {
-    thumbnailUrl: 'https://placekitten.com/336/324',
+    thumbnailUrl: 'https://placekitten.com/330/220',
     isSuperhost: false,
     isSaved: false,
-    houseType: 'Entire house',
-    beds: 2,
+    houseType: 'Entire condominium',
+    beds: 3,
     stayName: 'Placeholder name',
-    price: 100
+    price: 73
   },
   {
-    thumbnailUrl: 'https://placekitten.com/336/324',
+    thumbnailUrl: 'https://placekitten.com/330/220',
     isSuperhost: true,
     isSaved: true,
     houseType: 'Entire house',
@@ -36,7 +38,7 @@ module.exports = [
     price: 100
   },
   {
-    thumbnailUrl: 'https://placekitten.com/336/324',
+    thumbnailUrl: 'https://placekitten.com/330/220',
     isSuperhost: true,
     isSaved: true,
     houseType: 'Entire house',
@@ -45,7 +47,7 @@ module.exports = [
     price: 100
   },
   {
-    thumbnailUrl: 'https://placekitten.com/336/324',
+    thumbnailUrl: 'https://placekitten.com/330/220',
     isSuperhost: true,
     isSaved: true,
     houseType: 'Entire house',
@@ -54,7 +56,7 @@ module.exports = [
     price: 100
   },
   {
-    thumbnailUrl: 'https://placekitten.com/336/324',
+    thumbnailUrl: 'https://placekitten.com/330/220',
     isSuperhost: true,
     isSaved: true,
     houseType: 'Entire house',
@@ -63,7 +65,7 @@ module.exports = [
     price: 100
   },
   {
-    thumbnailUrl: 'https://placekitten.com/336/324',
+    thumbnailUrl: 'https://placekitten.com/330/220',
     isSuperhost: true,
     isSaved: true,
     houseType: 'Entire house',
@@ -72,7 +74,7 @@ module.exports = [
     price: 100
   },
   {
-    thumbnailUrl: 'https://placekitten.com/336/324',
+    thumbnailUrl: 'https://placekitten.com/330/220',
     isSuperhost: true,
     isSaved: true,
     houseType: 'Entire house',
@@ -81,7 +83,7 @@ module.exports = [
     price: 100
   },
   {
-    thumbnailUrl: 'https://placekitten.com/336/324',
+    thumbnailUrl: 'https://placekitten.com/330/220',
     isSuperhost: true,
     isSaved: true,
     houseType: 'Entire house',
@@ -90,7 +92,7 @@ module.exports = [
     price: 100
   },
   {
-    thumbnailUrl: 'https://placekitten.com/336/324',
+    thumbnailUrl: 'https://placekitten.com/330/220',
     isSuperhost: true,
     isSaved: true,
     houseType: 'Entire house',
@@ -99,7 +101,7 @@ module.exports = [
     price: 100
   },
   {
-    thumbnailUrl: 'https://placekitten.com/336/324',
+    thumbnailUrl: 'https://placekitten.com/330/220',
     isSuperhost: true,
     isSaved: true,
     houseType: 'Entire house',

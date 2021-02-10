@@ -10,7 +10,8 @@ const CarouselControlsContainer = styled.div`
   justify-content: space-between;
   width: 120px;
   p {
-    font-size: 1.4rem;
+    font-size: 14px;
+    margin: 0;
   }
   @media (min-width: ${query.medium}) {
     display: flex;

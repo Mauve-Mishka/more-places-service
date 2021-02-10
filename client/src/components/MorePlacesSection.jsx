@@ -1,15 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import SectionHeader from './SectionHeader';
+import CarouselSection from './CarouselSection';
 import axios from 'axios';
 import { colors, query } from '../utils';
 
 const MorePlacesSectionContainer = styled.section`
   background-color: ${colors.culturedgray};
-  padding: 32px 0;
+  font-family: "Roboto";
+  margin: 0;
+  padding: 32px 24px;
+  width: auto;
   @media (min-width: ${query.medium}) {
-    padding: 48px 0;
+    padding: 48px 40px;
   }
+  @media (min-width: ${query.large}) {
+    padding: 48px 80px;
+  }
+`;
+
+const SectionInnerContainer = styled.div`
+  margin: 0 auto;
+  max-width: 1128px;
+  width: 100%;
 `;
 
 const MorePlacesSection = () => {
@@ -28,15 +41,27 @@ const MorePlacesSection = () => {
 
   const [ places, setPlaces ] = useState(defaultState);
   const [ page, setPage ] = useState(1);
-  const [ perPage, setPerPage ] = useState(4); // needs to update based on page width
+  const [ perPage, setPerPage ] = useState(window.innerWidth >= 1128 ? 4 : 3);
 
   useEffect(() => {
     const fetchInitialState = async () => {
-      const { data } = await axios.get('/places');
+      const { data } = await axios.get('/places/test');
       setPlaces(data);
     };
     fetchInitialState();
   }, []);
+
+  useEffect(() => {
+    const updatePagination = () => {
+      if (window.innerWidth >= 1128 && perPage !== 4) {
+        setPerPage(4);
+      } else if (window.innerWidth < 1128 && perPage !== 3) {
+        setPerPage(3);
+      }
+    };
+    window.addEventListener('resize', updatePagination);
+    return () => window.removeEventListener('resize', updatePagination);
+  }, [perPage]);
 
   const updatePage = (direction) => {
     if (direction > 0) {
@@ -48,7 +73,18 @@ const MorePlacesSection = () => {
 
   return (
     <MorePlacesSectionContainer>
-      <SectionHeader page={page} pages={places.length / perPage} updatePage={updatePage} />
+      <SectionInnerContainer>
+        <SectionHeader
+          page={page}
+          pages={places.length / perPage}
+          updatePage={updatePage}
+        />
+        <CarouselSection
+          page={page}
+          perPage={perPage}
+          places={places}
+        />
+      </SectionInnerContainer>
     </MorePlacesSectionContainer>
   );
 };
