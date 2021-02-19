@@ -1,22 +1,12 @@
 const { Places } = require('./schema.js');
+const axios = require('axios');
 
-const createPlaces = async (ids) => {
+const generateRandomPlaces = (start, end) => {
   try {
-    const places = new Places({ids});
-    const data = await places.save();
-    return data;
-  } catch (err) {
-    console.error(err);
-  }
-};
-
-const getPlaces = async () => {
-  try {
-    const { ids } = await Places.findOne({});
     const twelveRandomPlaces = [];
     for (let i = 0; i < 12; i++) {
-      const randomIndex = Math.floor(Math.random() * ids.length);
-      twelveRandomPlaces.push(ids[randomIndex]);
+      const randomPlaceId = Math.floor(Math.random() * (end - start)) + start;
+      twelveRandomPlaces.push(randomPlaceId);
     }
     return twelveRandomPlaces;
   } catch (err) {
@@ -24,7 +14,101 @@ const getPlaces = async () => {
   }
 };
 
+const createPlace = async (id) => {
+  try {
+    const places = generateRandomPlaces(100, 199);
+    const place = new Places({ id, places });
+    const data = await place.save();
+    return data;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+const getPlaces = async (id) => {
+  try {
+    const places = Places.findOne({ id });
+    return places;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+const getPlaceSummary = async (id) => {
+  try {
+    const { data } = await axios.get(`http://ec2-54-149-117-186.us-west-2.compute.amazonaws.com:5002/rooms/${id}/summary`);
+    return data;
+  } catch (err) {
+    return {
+      typeOfStay: 'Entire home',
+      numGuests: 4,
+      numBaths: 2,
+      numBeds: 2,
+      numBedrooms: 2,
+    };
+  }
+};
+
+const getPlaceThumbnail = async (id) => {
+  try {
+    const { data } = await axios.get();
+    return data;
+  } catch (err) {
+    return { thumbnailUrl: 'https://placekitten.com/330/220' };
+  }
+};
+
+const getPlacePrice = async (id) => {
+  try {
+    const { data } = await axios.get(`http://ec2-54-149-117-186.us-west-2.compute.amazonaws.com:5001/rooms/${id}/minNightlyRate`);
+    return data;
+  } catch (err) {
+    return { minNightlyRate: 209 };
+  }
+};
+
+const getPlaceSuperhost = async (id) => {
+  try {
+    const { data } = await axios.get(`http://ec2-34-219-4-242.us-west-2.compute.amazonaws.com:5007/users/${id}/super`);
+    return data;
+  } catch (err) {
+    return false;
+  }
+};
+
+const getPlacesDetails = async (id) => {
+  try {
+    const { places } = await getPlaces(id);
+    const placesDetails = Promise.all(
+      places.map((placeId) => {
+        const getter = Promise.all([
+          getPlaceSummary(placeId),
+          getPlaceThumbnail(placeId),
+          getPlacePrice(placeId),
+          getPlaceSuperhost(placeId),
+        ])
+          .then(res => {
+            return {
+              ...res[0],
+              ...res[1],
+              ...res[2],
+              ...res[3],
+              stayName: 'Luxury kitten condo',
+            }
+          })
+          .catch(err => err);
+        return getter;
+      })
+    ).then(res => res);
+
+    return placesDetails;
+
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 module.exports = {
-  createPlaces,
-  getPlaces
+  createPlace,
+  getPlacesDetails
 };
