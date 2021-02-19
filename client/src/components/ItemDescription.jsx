@@ -17,12 +17,12 @@ const ItemDescriptionContainer = styled.div`
   }
 `;
 
-const ItemDescription = ({ beds, houseType, price, stayName }) => {
+const ItemDescription = ({ beds, houseType, minNightlyRate, stayName }) => {
   return (
     <ItemDescriptionContainer>
       <p>{ houseType } · { beds } beds</p>
       <p>{ stayName }</p>
-      <p><span>${ price }</span> / night</p>
+      <p><span>${ minNightlyRate }</span> / night</p>
     </ItemDescriptionContainer>
   );
 };

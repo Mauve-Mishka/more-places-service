@@ -33,9 +33,9 @@ const CarouselItem = ({ place }) => {
         reviewsAvg={place.reviewsAvg}
       />
       <ItemDescription
-        beds={place.beds}
-        houseType={place.houseType}
-        price={place.price}
+        beds={place.numBeds}
+        houseType={place.typeOfStay}
+        minNightlyRate={place.minNightlyRate}
         stayName={place.stayName}
       />
     </CarouselItemContainer>

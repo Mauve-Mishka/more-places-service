@@ -28,10 +28,9 @@ const CarouselContainer = styled.div`
 `;
 
 const CarouselSection = ({ page, perPage, places }) => {
-
-  const items = places.map(place => {
+  const items = places.map((place, i) => {
     return (
-      <CarouselItem key={place.stayName} place={place}/>
+      <CarouselItem key={`${place.stayName}-${i}`} place={place}/>
     );
   });
 
