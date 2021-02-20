@@ -1,7 +1,8 @@
 const { Schema, model } = require('mongoose');
 
 const placesSchema = new Schema({
-  ids: [Number]
+  id: Number,
+  places: [Number]
 });
 
 const Places = model('Places', placesSchema);

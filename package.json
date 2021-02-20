@@ -9,8 +9,10 @@
   },
   "scripts": {
     "start": "nodemon server/index.js",
-    "build": "webpack -w",
-    "test": "jest"
+    "build": "NODE_ENV=production webpack",
+    "client-dev": "NODE_ENV=development webpack -w",
+    "test": "jest",
+    "seed": "node server/database/seed.js"
   },
   "dependencies": {
     "@babel/plugin-transform-runtime": "^7.12.13",

@@ -45,7 +45,7 @@ const MorePlacesSection = () => {
 
   useEffect(() => {
     const fetchInitialState = async () => {
-      const { data } = await axios.get('/places/test');
+      const { data } = await axios.get(`/places/${window.location.pathname.split('/')[2]}`);
       setPlaces(data);
     };
     fetchInitialState();
