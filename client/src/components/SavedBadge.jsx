@@ -12,9 +12,9 @@ const SavedBadgeContainer = styled.div`
   }
 `;
 
-const SavedBadge = ({ isSaved }) => {
+const SavedBadge = ({ isSaved, toggleModal }) => {
   return (
-    <SavedBadgeContainer>
+    <SavedBadgeContainer onClick={() => toggleModal()}>
       {isSaved ? <p>♥️</p> : <p>♡</p>}
     </SavedBadgeContainer>
   );
