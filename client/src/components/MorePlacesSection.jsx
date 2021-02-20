@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import SectionHeader from './SectionHeader';
 import CarouselSection from './CarouselSection';
+import SaveModal from './SaveModal';
 import axios from 'axios';
 import { colors, query } from '../utils';
 
@@ -42,6 +43,7 @@ const MorePlacesSection = () => {
   const [ places, setPlaces ] = useState(defaultState);
   const [ page, setPage ] = useState(1);
   const [ perPage, setPerPage ] = useState(window.innerWidth >= 1128 ? 4 : 3);
+  const [ isModalOpen, setIsModalOpen ] = useState(false);
 
   useEffect(() => {
     const fetchInitialState = async () => {
@@ -71,8 +73,13 @@ const MorePlacesSection = () => {
     }
   };
 
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
   return (
     <MorePlacesSectionContainer>
+      {isModalOpen && <SaveModal toggleModal={toggleModal}/>}
       <SectionInnerContainer>
         <SectionHeader
           page={page}
@@ -83,6 +90,7 @@ const MorePlacesSection = () => {
           page={page}
           perPage={perPage}
           places={places}
+          toggleModal={toggleModal}
         />
       </SectionInnerContainer>
     </MorePlacesSectionContainer>
