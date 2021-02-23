@@ -15,6 +15,7 @@
     "seed": "node server/database/seed.js"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.5.0",
     "@babel/plugin-transform-runtime": "^7.12.13",
     "@fontsource/roboto": "^4.1.0",
     "axios": "^0.21.1",
