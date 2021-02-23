@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import SectionHeader from './SectionHeader';
 import CarouselSection from './CarouselSection';
+import SaveModal from './SaveModal';
 import axios from 'axios';
 import { colors, query } from '../utils';
 
@@ -29,19 +30,48 @@ const MorePlacesSection = () => {
 
   const defaultState = [
     {
-      thumbnailUrl: 'https://placekitten.com/336/324',
+      thumbnailUrl: 'https://placekitten.com/330/220',
       isSuperhost: false,
       isSaved: false,
       houseType: '',
       beds: null,
       stayName: '',
       price: null
-    }
+    },
+    {
+      thumbnailUrl: 'https://placekitten.com/330/220',
+      isSuperhost: false,
+      isSaved: false,
+      houseType: '',
+      beds: null,
+      stayName: '',
+      price: null
+    },
+    {
+      thumbnailUrl: 'https://placekitten.com/330/220',
+      isSuperhost: false,
+      isSaved: false,
+      houseType: '',
+      beds: null,
+      stayName: '',
+      price: null
+    },
+    {
+      thumbnailUrl: 'https://placekitten.com/330/220',
+      isSuperhost: false,
+      isSaved: false,
+      houseType: '',
+      beds: null,
+      stayName: '',
+      price: null
+    },
   ];
 
   const [ places, setPlaces ] = useState(defaultState);
   const [ page, setPage ] = useState(1);
   const [ perPage, setPerPage ] = useState(window.innerWidth >= 1128 ? 4 : 3);
+  const [ isModalOpen, setIsModalOpen ] = useState(false);
+  const [ activeItem, setActiveItem ] = useState(0);
 
   useEffect(() => {
     const fetchInitialState = async () => {
@@ -63,6 +93,10 @@ const MorePlacesSection = () => {
     return () => window.removeEventListener('resize', updatePagination);
   }, [perPage]);
 
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
   const updatePage = (direction) => {
     if (direction > 0) {
       page === (places.length / perPage) ? setPage(1) : setPage(page + 1);
@@ -71,20 +105,35 @@ const MorePlacesSection = () => {
     }
   };
 
+  const updateSaved = (index) => {
+    let placesCopy = [ ...places ];
+    placesCopy[index].isSaved = !placesCopy[index].isSaved
+    setPlaces(placesCopy);
+  };
+
   return (
     <MorePlacesSectionContainer>
       <SectionInnerContainer>
         <SectionHeader
           page={page}
-          pages={places.length / perPage}
+          pages={places.length > 1 ? places.length / perPage : 12 }
           updatePage={updatePage}
         />
         <CarouselSection
           page={page}
           perPage={perPage}
           places={places}
+          setActive={setActiveItem}
+          toggleModal={toggleModal}
         />
       </SectionInnerContainer>
+      <SaveModal
+        active={activeItem}
+        isOpen={isModalOpen}
+        isSaved={places[activeItem].isSaved}
+        toggleModal={toggleModal}
+        updateSaved={updateSaved}
+      />
     </MorePlacesSectionContainer>
   );
 };

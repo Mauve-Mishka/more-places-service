@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { HeartOutlined, HeartFilled } from '@ant-design/icons';
+import { colors } from '../utils';
 import PropTypes from 'prop-types';
 
 const SavedBadgeContainer = styled.div`
@@ -12,10 +14,12 @@ const SavedBadgeContainer = styled.div`
   }
 `;
 
-const SavedBadge = ({ isSaved }) => {
+const SavedBadge = ({ index, isSaved, setActive, toggleModal }) => {
   return (
-    <SavedBadgeContainer>
-      {isSaved ? <p>♥️</p> : <p>♡</p>}
+    <SavedBadgeContainer onClick={() => toggleModal()}>
+      {isSaved
+        ? <HeartFilled style={{ color: colors.radicalred, fontSize: '24px' }} onClick={() => setActive(index)} />
+        : <HeartOutlined style={{ color: 'white', fontSize: '24px' }} onClick={() => setActive(index)} />}
     </SavedBadgeContainer>
   );
 };

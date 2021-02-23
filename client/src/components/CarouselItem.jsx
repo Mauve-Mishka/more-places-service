@@ -20,13 +20,16 @@ const CarouselItemContainer = styled.div`
   }
 `;
 
-const CarouselItem = ({ place }) => {
+const CarouselItem = ({ index, place, setActive, toggleModal }) => {
   return (
     <CarouselItemContainer>
       <ItemPhoto
+        index={index}
         isSaved={place.isSaved}
         isSuperhost={place.isSuperhost}
+        setActive={setActive}
         thumbnailUrl={place.thumbnailUrl}
+        toggleModal={toggleModal}
       />
       <ItemReviews
         reviews={place.reviews}
