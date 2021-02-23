@@ -16,12 +16,12 @@ const StyledItemPhoto = styled.img`
   width: 100%;
 `;
 
-const ItemPhoto = ({ isSaved, isSuperhost, thumbnailUrl, toggleModal }) => {
+const ItemPhoto = ({ index, isSaved, isSuperhost, setActive, thumbnailUrl, toggleModal }) => {
   return (
     <ItemPhotoContainer>
       <StyledItemPhoto src={thumbnailUrl} />
       {isSuperhost && <SuperhostBadge isSuperhost={isSuperhost} />}
-      <SavedBadge isSaved={isSaved} toggleModal={toggleModal}/>
+      <SavedBadge index={index} isSaved={isSaved} setActive={setActive} toggleModal={toggleModal}/>
     </ItemPhotoContainer>
   );
 };
