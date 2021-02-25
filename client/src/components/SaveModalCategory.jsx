@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+const { styled } = window;
 import { HeartOutlined, HeartFilled } from '@ant-design/icons';
 import { colors } from '../utils';
 

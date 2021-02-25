@@ -69,7 +69,7 @@ const getPlacePrice = async (id) => {
 
 const getPlaceSuperhost = async (id) => {
   try {
-    const { data } = await axios.get(`http://ec2-34-219-4-242.us-west-2.compute.amazonaws.com:5007/users/${id}/super`);
+    const { data } = await axios.get(`http://ec2-52-24-37-226.us-west-2.compute.amazonaws.com:5007/users/${id}/super`);
     return data;
   } catch (err) {
     return false;

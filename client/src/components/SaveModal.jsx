@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+const { styled } = window;
 import { CloseOutlined } from '@ant-design/icons';
 import { colors, query } from '../utils';
 import SaveModalCategory from './SaveModalCategory';
