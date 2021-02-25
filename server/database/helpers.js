@@ -39,6 +39,7 @@ const getPlaceSummary = async (id) => {
     const { data } = await axios.get(`http://ec2-54-149-117-186.us-west-2.compute.amazonaws.com:5002/rooms/${id}/summary`);
     return data;
   } catch (err) {
+    console.log('summary');
     return {
       typeOfStay: 'Entire home',
       numGuests: 4,
@@ -54,6 +55,7 @@ const getPlaceThumbnail = async (id) => {
     const { data } = await axios.get();
     return data;
   } catch (err) {
+    console.log('thumbnail');
     return { thumbnailUrl: 'https://placekitten.com/330/220' };
   }
 };
@@ -63,15 +65,19 @@ const getPlacePrice = async (id) => {
     const { data } = await axios.get(`http://ec2-54-149-117-186.us-west-2.compute.amazonaws.com:5001/rooms/${id}/minNightlyRate`);
     return data;
   } catch (err) {
+    console.log('price');
     return { minNightlyRate: 209 };
   }
 };
 
 const getPlaceSuperhost = async (id) => {
   try {
-    const { data } = await axios.get(`http://ec2-52-24-37-226.us-west-2.compute.amazonaws.com:5007/users/${id}/super`);
+    const { data } = await axios.get(`http://ec2-52-24-37-226.us-west-2.compute.amazonaws.com:5007/users/${id}/super`, {
+      timeout: 500
+    });
     return data;
   } catch (err) {
+    console.log('superhost');
     return false;
   }
 };
