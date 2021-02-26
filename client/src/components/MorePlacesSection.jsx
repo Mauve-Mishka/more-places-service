@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+const { styled } = window;
 import SectionHeader from './SectionHeader';
 import CarouselSection from './CarouselSection';
 import SaveModal from './SaveModal';
@@ -73,12 +73,11 @@ const MorePlacesSection = () => {
   const [ isModalOpen, setIsModalOpen ] = useState(false);
   const [ activeItem, setActiveItem ] = useState(0);
 
-  useEffect(() => {
-    const fetchInitialState = async () => {
-      const { data } = await axios.get(`/places/${window.location.pathname.split('/')[2]}`);
+  useEffect(async () => {
+    const { data } = await axios.get(`/places/${window.location.pathname.split('/')[2]}`);
+    if (data) {
       setPlaces(data);
-    };
-    fetchInitialState();
+    }
   }, []);
 
   useEffect(() => {
@@ -107,7 +106,7 @@ const MorePlacesSection = () => {
 
   const updateSaved = (index) => {
     let placesCopy = [ ...places ];
-    placesCopy[index].isSaved = !placesCopy[index].isSaved
+    placesCopy[index].isSaved = !placesCopy[index].isSaved;
     setPlaces(placesCopy);
   };
 
