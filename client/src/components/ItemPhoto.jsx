@@ -5,13 +5,15 @@ import SuperhostBadge from './SuperhostBadge';
 import SavedBadge from './SavedBadge';
 
 const ItemPhotoContainer = styled.div`
+  border-radius: 8px;
+  height: 0;
+  padding-bottom: 66%;
   position: relative;
+  overflow: hidden;
   width: 100%;
-  height: auto;
 `;
 
 const StyledItemPhoto = styled.img`
-  border-radius: 8px;
   height: auto;
   width: 100%;
 `;
