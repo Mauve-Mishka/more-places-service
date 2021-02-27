@@ -7,11 +7,11 @@ import axios from 'axios';
 import { colors, query } from '../utils';
 
 const MorePlacesSectionContainer = styled.section`
-  background-color: ${colors.culturedgray};
+  background-color: rgb(247, 247, 247);
   font-family: "Roboto";
   margin: 0;
   padding: 32px 24px;
-  width: auto;
+  width: 100%;
   @media (min-width: ${query.medium}) {
     padding: 48px 40px;
   }
@@ -112,6 +112,7 @@ const MorePlacesSection = () => {
 
   return (
     <MorePlacesSectionContainer>
+      <div classname='line'></div>
       <SectionInnerContainer>
         <SectionHeader
           page={page}
