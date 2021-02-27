@@ -79,6 +79,18 @@ const getPlaceSuperhost = async (id) => {
   }
 };
 
+const getPlaceTitle = async (id) => {
+  try {
+    const { data } = await axios.get(`http://ec2-18-191-199-80.us-east-2.compute.amazonaws.com:5006/rooms/${id}/title`, {
+      timeout: 500
+    });
+    console.log(data)
+    return { stayName: data[0].titleName };
+  } catch (err) {
+    return { stayName: 'Luxury kitten condo'};
+  }
+};
+
 const getPlacesDetails = async (id) => {
   try {
     const { places } = await getPlaces(id);
@@ -89,6 +101,7 @@ const getPlacesDetails = async (id) => {
           getPlaceThumbnail(placeId),
           getPlacePrice(placeId),
           getPlaceSuperhost(placeId),
+          getPlaceTitle(placeId),
         ])
           .then(res => {
             return {
@@ -96,7 +109,7 @@ const getPlacesDetails = async (id) => {
               ...res[1],
               ...res[2],
               ...res[3],
-              stayName: 'Luxury kitten condo',
+              ...res[4],
             }
           })
           .catch(err => err);
