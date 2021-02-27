@@ -51,8 +51,9 @@ const getPlaceSummary = async (id) => {
 
 const getPlaceThumbnail = async (id) => {
   try {
-    const { data } = await axios.get();
-    return data;
+    const { data } = await axios.get(`http://ec2-18-191-199-80.us-east-2.compute.amazonaws.com:5005/rooms/${id}/getPhotosByRoomId`);
+    const thumbnailUrl = data.filter(el => el.is_primary === true)[0].storage_url;
+    return { thumbnailUrl };
   } catch (err) {
     return { thumbnailUrl: 'https://placekitten.com/330/220' };
   }
