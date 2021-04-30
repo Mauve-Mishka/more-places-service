@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+const { styled } = window;
 import PropTypes from 'prop-types';
 import CarouselItem from './CarouselItem';
 import { query } from '../utils';
@@ -27,10 +27,11 @@ const CarouselContainer = styled.div`
   }
 `;
 
-const CarouselSection = ({ page, perPage, places }) => {
+const CarouselSection = ({ page, perPage, places, setActive, toggleModal }) => {
   const items = places.map((place, i) => {
+    console.log(place)
     return (
-      <CarouselItem key={`${place.stayName}-${i}`} place={place}/>
+      <CarouselItem index={i} id={place.id} key={`${place.stayName}-${i}`} place={place} setActive={setActive} toggleModal={toggleModal}/>
     );
   });
 

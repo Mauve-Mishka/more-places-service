@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+const { styled } = window;
 import SectionHeader from './SectionHeader';
 import CarouselSection from './CarouselSection';
+import SaveModal from './SaveModal';
 import axios from 'axios';
 import { colors, query } from '../utils';
 
 const MorePlacesSectionContainer = styled.section`
-  background-color: ${colors.culturedgray};
+  background-color: rgb(247, 247, 247);
   font-family: "Roboto";
   margin: 0;
   padding: 32px 24px;
-  width: auto;
+  width: 100%;
   @media (min-width: ${query.medium}) {
     padding: 48px 40px;
   }
@@ -29,26 +30,58 @@ const MorePlacesSection = () => {
 
   const defaultState = [
     {
-      thumbnailUrl: 'https://placekitten.com/336/324',
+      id: 1,
+      thumbnailUrl: 'https://placekitten.com/330/220',
       isSuperhost: false,
       isSaved: false,
       houseType: '',
       beds: null,
       stayName: '',
       price: null
-    }
+    },
+    {
+      id: 1,
+      thumbnailUrl: 'https://placekitten.com/330/220',
+      isSuperhost: false,
+      isSaved: false,
+      houseType: '',
+      beds: null,
+      stayName: '',
+      price: null
+    },
+    {
+      id: 1,
+      thumbnailUrl: 'https://placekitten.com/330/220',
+      isSuperhost: false,
+      isSaved: false,
+      houseType: '',
+      beds: null,
+      stayName: '',
+      price: null
+    },
+    {
+      id: 1,
+      thumbnailUrl: 'https://placekitten.com/330/220',
+      isSuperhost: false,
+      isSaved: false,
+      houseType: '',
+      beds: null,
+      stayName: '',
+      price: null
+    },
   ];
 
   const [ places, setPlaces ] = useState(defaultState);
   const [ page, setPage ] = useState(1);
   const [ perPage, setPerPage ] = useState(window.innerWidth >= 1128 ? 4 : 3);
+  const [ isModalOpen, setIsModalOpen ] = useState(false);
+  const [ activeItem, setActiveItem ] = useState(0);
 
-  useEffect(() => {
-    const fetchInitialState = async () => {
-      const { data } = await axios.get(`/places/${window.location.pathname.split('/')[2]}`);
+  useEffect(async () => {
+    const { data } = await axios.get(`/places/${window.location.pathname.split('/')[2]}`);
+    if (data) {
       setPlaces(data);
-    };
-    fetchInitialState();
+    }
   }, []);
 
   useEffect(() => {
@@ -63,6 +96,10 @@ const MorePlacesSection = () => {
     return () => window.removeEventListener('resize', updatePagination);
   }, [perPage]);
 
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
   const updatePage = (direction) => {
     if (direction > 0) {
       page === (places.length / perPage) ? setPage(1) : setPage(page + 1);
@@ -71,21 +108,40 @@ const MorePlacesSection = () => {
     }
   };
 
+  const updateSaved = (index) => {
+    let placesCopy = [ ...places ];
+    placesCopy[index].isSaved = !placesCopy[index].isSaved;
+    setPlaces(placesCopy);
+  };
+
   return (
-    <MorePlacesSectionContainer>
-      <SectionInnerContainer>
-        <SectionHeader
-          page={page}
-          pages={places.length / perPage}
-          updatePage={updatePage}
-        />
-        <CarouselSection
-          page={page}
-          perPage={perPage}
-          places={places}
-        />
-      </SectionInnerContainer>
-    </MorePlacesSectionContainer>
+    <>
+      { places[0].price !== null &&
+        <MorePlacesSectionContainer>
+          <SectionInnerContainer>
+            <SectionHeader
+              page={page}
+              pages={places.length > 1 ? places.length / perPage : 12 }
+              updatePage={updatePage}
+            />
+            <CarouselSection
+              page={page}
+              perPage={perPage}
+              places={places}
+              setActive={setActiveItem}
+              toggleModal={toggleModal}
+            />
+          </SectionInnerContainer>
+          <SaveModal
+            active={activeItem}
+            isOpen={isModalOpen}
+            isSaved={places[activeItem].isSaved}
+            toggleModal={toggleModal}
+            updateSaved={updateSaved}
+          />
+        </MorePlacesSectionContainer>
+      }
+    </>
   );
 };
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+const { styled } = window;
 import PropTypes from 'prop-types';
 import { query } from '../utils';
 import ItemPhoto from './ItemPhoto';
@@ -20,13 +20,18 @@ const CarouselItemContainer = styled.div`
   }
 `;
 
-const CarouselItem = ({ place }) => {
+const CarouselItem = ({ id, index, place, setActive, toggleModal }) => {
+  console.log(id)
   return (
     <CarouselItemContainer>
       <ItemPhoto
+        id={id}
+        index={index}
         isSaved={place.isSaved}
         isSuperhost={place.isSuperhost}
+        setActive={setActive}
         thumbnailUrl={place.thumbnailUrl}
+        toggleModal={toggleModal}
       />
       <ItemReviews
         reviews={place.reviews}
