@@ -43,10 +43,10 @@ const getPlaceSummary = async (id) => {
     return {
       id,
       typeOfStay: faker.random.arrayElement(['Entire house', 'Private room', 'Hotel room', 'Entire apartment']),
-      numGuests: faker.random.number({ min: 2, max: 8 }),
-      numBaths: faker.random.number({ min: 1, max: 4 }),
-      numBeds: faker.random.number({ min: 2, max: 8 }),
-      numBedrooms: faker.random.number({ min: 2, max: 8 }),
+      numGuests: faker.datatype.number({ min: 2, max: 8 }),
+      numBaths: faker.datatype.number({ min: 1, max: 4 }),
+      numBeds: faker.datatype.number({ min: 2, max: 8 }),
+      numBedrooms: faker.datatype.number({ min: 2, max: 8 }),
     };
   // }
 };
@@ -57,7 +57,7 @@ const getPlaceThumbnail = async (id) => {
   //   const thumbnailUrl = data.filter(el => el.is_primary === true)[0].storage_url;
   //   return { thumbnailUrl };
   // } catch (err) {
-    return { thumbnailUrl: `https://picsum.photos/id/${faker.random.number({ min: 1047, max: 1083 })}/330/220` };
+    return { thumbnailUrl: `https://picsum.photos/id/${faker.datatype.number({ min: 1047, max: 1083 })}/330/220` };
   // }
 };
 
@@ -66,7 +66,7 @@ const getPlacePrice = async (id) => {
   //   const { data } = await axios.get(`http://ec2-54-149-117-186.us-west-2.compute.amazonaws.com:5001/rooms/${id}/minNightlyRate`);
   //   return data;
   // } catch (err) {
-    return { minNightlyRate: faker.random.number({ min: 89, max: 259 }) };
+    return { minNightlyRate: faker.datatype.number({ min: 89, max: 259 }) };
   // }
 };
 

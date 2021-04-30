@@ -21,7 +21,6 @@ const CarouselItemContainer = styled.div`
 `;
 
 const CarouselItem = ({ id, index, place, setActive, toggleModal }) => {
-  console.log(id)
   return (
     <CarouselItemContainer>
       <ItemPhoto

@@ -10,7 +10,6 @@ app.use('/rooms/:id', express.static('public'));
 app.get('/places/:id', async (req, res) => {
   try {
     const places = await getPlacesDetails(req.params.id);
-    console.log(places)
     res.status(200).send(places);
   } catch (err) {
     res.status(500).send(err.message);
