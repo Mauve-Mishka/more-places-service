@@ -1,41 +1,14 @@
-# More Places To Stay
+# Airbnb More Places To Stay Clone
 
-> This repo is a clone of the More Places To Stay service from an AirBnb room listing page.
+This service displays a carousel of 12 additional properties that the user might stay at. Components are responsive with mobile-first styling.
+
+Built using React, Node, Express, and MongoDB. Testing with Jest and React Testing Library. Service deployed to Amazon EC2.
 
 ## Related Projects
 
-  - https://github.com/Mauve-Mishka/title-service
-  - https://github.com/Mauve-Mishka/photos-service
-  - https://github.com/Mauve-Mishka/summary-service
-  - https://github.com/Mauve-Mishka/amenities-service
-  - https://github.com/Mauve-Mishka/availability-service
   - https://github.com/Mauve-Mishka/user-service
+  - https://github.com/Mauve-Mishka/header
+  - https://github.com/Mauve-Mishka/sam-proxy
 
-## Table of Contents
-
-1. [Usage](#Usage)
-1. [Requirements](#requirements)
-1. [Development](#development)
-
-## Usage
-
-> Some usage instructions
-
-## Requirements
-
-An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
-
-- Node 6.13.0
-- etc
-
-## Development
-
-### Installing Dependencies
-
-From within the root directory:
-
-```sh
-npm install -g webpack
-npm install
-```
-
+ 
+![Airbnb More Place to Stay service](https://fec-gnocchi-user-profile.s3-us-west-2.amazonaws.com/airbnb-more-places.png)
