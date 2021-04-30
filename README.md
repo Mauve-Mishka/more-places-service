@@ -4,7 +4,7 @@ This service displays a carousel of 12 additional properties that the user might
 
 Built using React, Node, Express, and MongoDB. Testing with Jest and React Testing Library. Service deployed to Amazon EC2.
 
-See the [Live Demo](http://ec2-44-241-38-228.us-west-2.compute.amazonaws.com:5000/rooms/100/)
+### See the [Live Demo](http://ec2-44-241-38-228.us-west-2.compute.amazonaws.com:5000/rooms/100/)
 
 ## Related Projects
 
