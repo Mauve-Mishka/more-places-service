@@ -30,6 +30,7 @@ const MorePlacesSection = () => {
 
   const defaultState = [
     {
+      id: 1,
       thumbnailUrl: 'https://placekitten.com/330/220',
       isSuperhost: false,
       isSaved: false,
@@ -39,6 +40,7 @@ const MorePlacesSection = () => {
       price: null
     },
     {
+      id: 1,
       thumbnailUrl: 'https://placekitten.com/330/220',
       isSuperhost: false,
       isSaved: false,
@@ -48,6 +50,7 @@ const MorePlacesSection = () => {
       price: null
     },
     {
+      id: 1,
       thumbnailUrl: 'https://placekitten.com/330/220',
       isSuperhost: false,
       isSaved: false,
@@ -57,6 +60,7 @@ const MorePlacesSection = () => {
       price: null
     },
     {
+      id: 1,
       thumbnailUrl: 'https://placekitten.com/330/220',
       isSuperhost: false,
       isSaved: false,
@@ -111,30 +115,33 @@ const MorePlacesSection = () => {
   };
 
   return (
-    <MorePlacesSectionContainer>
-      <div classname='line'></div>
-      <SectionInnerContainer>
-        <SectionHeader
-          page={page}
-          pages={places.length > 1 ? places.length / perPage : 12 }
-          updatePage={updatePage}
-        />
-        <CarouselSection
-          page={page}
-          perPage={perPage}
-          places={places}
-          setActive={setActiveItem}
-          toggleModal={toggleModal}
-        />
-      </SectionInnerContainer>
-      <SaveModal
-        active={activeItem}
-        isOpen={isModalOpen}
-        isSaved={places[activeItem].isSaved}
-        toggleModal={toggleModal}
-        updateSaved={updateSaved}
-      />
-    </MorePlacesSectionContainer>
+    <>
+      { places[0].price !== null &&
+        <MorePlacesSectionContainer>
+          <SectionInnerContainer>
+            <SectionHeader
+              page={page}
+              pages={places.length > 1 ? places.length / perPage : 12 }
+              updatePage={updatePage}
+            />
+            <CarouselSection
+              page={page}
+              perPage={perPage}
+              places={places}
+              setActive={setActiveItem}
+              toggleModal={toggleModal}
+            />
+          </SectionInnerContainer>
+          <SaveModal
+            active={activeItem}
+            isOpen={isModalOpen}
+            isSaved={places[activeItem].isSaved}
+            toggleModal={toggleModal}
+            updateSaved={updateSaved}
+          />
+        </MorePlacesSectionContainer>
+      }
+    </>
   );
 };
 

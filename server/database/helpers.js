@@ -1,5 +1,6 @@
 const { Places } = require('./schema.js');
 const axios = require('axios');
+const faker = require('faker');
 
 const generateRandomPlaces = (start, end) => {
   try {
@@ -35,44 +36,43 @@ const getPlaces = async (id) => {
 };
 
 const getPlaceSummary = async (id) => {
-  try {
-    const { data } = await axios.get(`http://ec2-54-149-117-186.us-west-2.compute.amazonaws.com:5002/rooms/${id}/summary`);
-    return data;
-  } catch (err) {
+  // try {
+  //   const { data } = await axios.get(`http://ec2-54-149-117-186.us-west-2.compute.amazonaws.com:5002/rooms/${id}/summary`);
+  //   return data;
+  // } catch (err) {
     return {
-      typeOfStay: 'Entire home',
-      numGuests: 4,
-      numBaths: 2,
-      numBeds: 2,
-      numBedrooms: 2,
+      id,
+      typeOfStay: faker.random.arrayElement(['Entire house', 'Private room', 'Hotel room', 'Entire apartment']),
+      numGuests: faker.random.number({ min: 2, max: 8 }),
+      numBaths: faker.random.number({ min: 1, max: 4 }),
+      numBeds: faker.random.number({ min: 2, max: 8 }),
+      numBedrooms: faker.random.number({ min: 2, max: 8 }),
     };
-  }
+  // }
 };
 
 const getPlaceThumbnail = async (id) => {
-  try {
-    const { data } = await axios.get(`http://ec2-18-191-199-80.us-east-2.compute.amazonaws.com:5005/rooms/${id}/getPhotosByRoomId`);
-    const thumbnailUrl = data.filter(el => el.is_primary === true)[0].storage_url;
-    return { thumbnailUrl };
-  } catch (err) {
-    return { thumbnailUrl: 'https://placekitten.com/330/220' };
-  }
+  // try {
+  //   const { data } = await axios.get(`http://ec2-18-191-199-80.us-east-2.compute.amazonaws.com:5005/rooms/${id}/getPhotosByRoomId`);
+  //   const thumbnailUrl = data.filter(el => el.is_primary === true)[0].storage_url;
+  //   return { thumbnailUrl };
+  // } catch (err) {
+    return { thumbnailUrl: `https://picsum.photos/id/${faker.random.number({ min: 1047, max: 1083 })}/330/220` };
+  // }
 };
 
 const getPlacePrice = async (id) => {
-  try {
-    const { data } = await axios.get(`http://ec2-54-149-117-186.us-west-2.compute.amazonaws.com:5001/rooms/${id}/minNightlyRate`);
-    return data;
-  } catch (err) {
-    return { minNightlyRate: 209 };
-  }
+  // try {
+  //   const { data } = await axios.get(`http://ec2-54-149-117-186.us-west-2.compute.amazonaws.com:5001/rooms/${id}/minNightlyRate`);
+  //   return data;
+  // } catch (err) {
+    return { minNightlyRate: faker.random.number({ min: 89, max: 259 }) };
+  // }
 };
 
 const getPlaceSuperhost = async (id) => {
   try {
-    const { data } = await axios.get(`http://ec2-52-24-37-226.us-west-2.compute.amazonaws.com:5007/users/${id}/super`, {
-      timeout: 500
-    });
+    const { data } = await axios.get(`http://ec2-44-241-38-228.us-west-2.compute.amazonaws.com:5007/users/${id}/super`);
     return data;
   } catch (err) {
     return false;
@@ -80,15 +80,15 @@ const getPlaceSuperhost = async (id) => {
 };
 
 const getPlaceTitle = async (id) => {
-  try {
-    const { data } = await axios.get(`http://ec2-18-191-199-80.us-east-2.compute.amazonaws.com:5006/rooms/${id}/title`, {
-      timeout: 500
-    });
-    console.log(data)
-    return { stayName: data[0].titleName };
-  } catch (err) {
-    return { stayName: 'Luxury kitten condo'};
-  }
+  // try {
+  //   const { data } = await axios.get(`http://ec2-18-191-199-80.us-east-2.compute.amazonaws.com:5006/rooms/${id}/title`, {
+  //     timeout: 500
+  //   });
+  //   console.log(data)
+  //   return { stayName: data[0].titleName };
+  // } catch (err) {
+    return { stayName: 'Luxury condo' };
+  // }
 };
 
 const getPlacesDetails = async (id) => {

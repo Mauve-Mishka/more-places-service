@@ -18,10 +18,12 @@ const StyledItemPhoto = styled.img`
   width: 100%;
 `;
 
-const ItemPhoto = ({ index, isSaved, isSuperhost, setActive, thumbnailUrl, toggleModal }) => {
+const ItemPhoto = ({ id, index, isSaved, isSuperhost, setActive, thumbnailUrl, toggleModal }) => {
   return (
     <ItemPhotoContainer>
-      <StyledItemPhoto src={thumbnailUrl} />
+      <a href={`/rooms/${id}`}>
+        <StyledItemPhoto src={thumbnailUrl} />
+      </a>
       {isSuperhost && <SuperhostBadge isSuperhost={isSuperhost} />}
       <SavedBadge index={index} isSaved={isSaved} setActive={setActive} toggleModal={toggleModal}/>
     </ItemPhotoContainer>

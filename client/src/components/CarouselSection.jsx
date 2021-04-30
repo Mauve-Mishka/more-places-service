@@ -29,8 +29,9 @@ const CarouselContainer = styled.div`
 
 const CarouselSection = ({ page, perPage, places, setActive, toggleModal }) => {
   const items = places.map((place, i) => {
+    console.log(place)
     return (
-      <CarouselItem index={i} key={`${place.stayName}-${i}`} place={place} setActive={setActive} toggleModal={toggleModal}/>
+      <CarouselItem index={i} id={place.id} key={`${place.stayName}-${i}`} place={place} setActive={setActive} toggleModal={toggleModal}/>
     );
   });
 
